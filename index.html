@@ -1,0 +1,143 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Мои накопления · анимация шапки</title>
+<style>
+@font-face{font-family:MTSWide;src:url('header-assets/saving-MTSWide-Medium.woff2') format('woff2');font-weight:500;font-display:swap}
+@font-face{font-family:MTSCompact;src:url('header-assets/saving-MTSCompact-Medium.woff2') format('woff2');font-weight:500;font-display:swap}
+@font-face{font-family:MTSCompact;src:url('header-assets/saving-MTSCompact-Regular.woff2') format('woff2');font-weight:400;font-display:swap}
+:root{--bg:#f2f3f7;--ink:#1d2023;--secondary:#626c77;--action-bottom-gap:16px;--action-expanded-height:52px;font-family:MTSCompact,Arial,sans-serif;color:var(--ink);background:var(--bg);font-synthesis:none}*{box-sizing:border-box}html,body{width:100%;height:100%;margin:0;background:var(--bg);-webkit-font-smoothing:antialiased}body{overflow:hidden;overscroll-behavior:none}.scrollport{position:fixed;inset:0;overflow-y:auto;overflow-x:hidden;overscroll-behavior-y:none;-webkit-overflow-scrolling:touch;scrollbar-width:none;touch-action:pan-y;background:var(--bg)}.scrollport::-webkit-scrollbar{display:none}.screen{position:relative;width:min(100%,375px);min-height:100%;margin:0 auto;display:flex;flex-direction:column;gap:12px;padding-bottom:0;isolation:isolate}
+.header-wrap{position:relative;flex:none;height:396px;overflow:visible}.header{position:relative;isolation:isolate;flex:none;height:496px;width:100%;overflow:hidden;padding-top:148px;background:#fff;border-radius:0 0 32px 32px}.backdrop{position:absolute;z-index:-1;top:-7px;left:0;width:100%;height:490px;background:#fff url('header-assets/saving-hero-gradient.png') center top/cover no-repeat;filter:blur(10px);transform:scale(1.02)}.backdrop:after{content:"";position:absolute;inset:0;background:linear-gradient(to bottom,rgba(214,214,255,0) 40%,rgba(214,214,255,.5) 80%)}.hero-controls{position:absolute;top:calc(env(safe-area-inset-top) + 64px);left:16px;right:16px;display:flex;justify-content:space-between;align-items:center;height:44px}.icon-button{display:grid;place-items:center;width:36px;height:36px;padding:6px;border:0;border-radius:12px;background:transparent}.icon-button img{width:24px;height:24px;display:block}.hero-balance{position:absolute;top:148px;left:0;right:0;display:flex;flex-direction:column;align-items:center;gap:12px}.hero-title{color:var(--secondary);font:500 20px/24px MTSWide,sans-serif}.carousel{position:relative;width:100%;height:36px;overflow:hidden;touch-action:pan-y;cursor:pointer}.value{position:absolute;top:0;left:50%;height:36px;white-space:nowrap;font:500 32px/36px MTSWide,sans-serif;transform-origin:center;will-change:transform,opacity}.dot{position:absolute;left:50%;top:14px;width:8px;height:8px}.income{display:flex;align-items:center;justify-content:center;gap:6px;height:24px;border:0;padding:0;background:transparent;font:inherit;cursor:pointer;-webkit-tap-highlight-color:transparent}.income:disabled{cursor:default}.income:focus-visible{outline:2px solid #8cac3b;outline-offset:3px;border-radius:8px}.badge{display:inline-flex;flex:none;width:max-content;align-items:center;padding:2px 6px;border-radius:8px;background:#d9f38b;color:#495c1e;font:500 14px/20px MTSCompact,sans-serif;overflow:hidden;white-space:pre}.badge-text{display:inline-flex;align-items:center;flex:none;height:20px}.glyph{position:relative;display:inline-block;flex:none;height:20px;overflow:hidden}.glyph span{position:absolute;inset:0;display:block;height:20px;line-height:20px}.income-caption{color:rgba(29,32,35,.72);font-size:14px;line-height:18px;white-space:nowrap}.sort{width:16px;height:16px;opacity:.7;margin-left:-2px}.actions{position:absolute;top:316px;left:20px;right:20px;display:flex;gap:4px;margin:0;transition:opacity 0s}.action{flex:1;min-width:0;min-height:64px;padding:10px 8px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:4px;border:1px solid rgba(255,255,255,.3);border-radius:20px;background:rgba(255,255,255,.55);backdrop-filter:blur(20px);color:var(--ink);font-size:12px;line-height:16px}.action img{width:24px;height:24px;filter:brightness(0) saturate(100%) invert(10%) sepia(8%) saturate(727%) hue-rotate(169deg) brightness(92%) contrast(91%)}.action span{width:100%;overflow:hidden;text-align:center;text-overflow:ellipsis;white-space:nowrap}
+.section{position:relative;z-index:1;flex:none;overflow:hidden;padding:12px 0;border-radius:32px;background:#fff}.section-title{padding:12px 20px 0;color:var(--secondary);font-size:14px;font-weight:500;line-height:20px;text-transform:uppercase}.product{min-height:84px;padding:10px 20px;display:flex;align-items:center;gap:12px}.product-icon{position:relative;flex:none;width:52px;height:52px;overflow:hidden;border-radius:16px}.product-icon img{display:block;width:52px;height:52px;object-fit:contain}.product-icon.add{display:grid;place-items:center;background:#f2f3f7}.product-icon.add img{width:24px;height:24px}.product-icon.metal{background:linear-gradient(135deg,rgba(255,255,255,0),rgba(255,255,255,.5))}.product-copy{flex:1;min-width:0;display:flex;flex-direction:column;gap:4px}.product-name,.product-note{overflow:hidden;color:var(--secondary);font-size:14px;line-height:18px;text-overflow:ellipsis;white-space:nowrap}.product-value{color:var(--ink);font-size:17px;font-weight:500;line-height:20px;white-space:nowrap}.product-income{flex:none;padding-left:4px;color:#00a832;font-size:14px;line-height:20px;white-space:nowrap}.offer{min-height:84px;padding:10px 20px;display:flex;align-items:center;gap:12px;color:inherit;text-decoration:none}.offer-copy{min-width:0;display:flex;flex-direction:column;gap:4px}.offer-title{overflow:hidden;color:var(--ink);font-size:14px;font-weight:500;line-height:18px;text-overflow:ellipsis;white-space:nowrap}.offer-note{overflow:hidden;color:var(--secondary);font-size:14px;line-height:18px;text-overflow:ellipsis;white-space:nowrap}.metals .product-icon{border-radius:16px}.scroll-end-space{flex:none;height:calc(var(--action-expanded-height) + var(--action-bottom-gap) + env(safe-area-inset-bottom))}
+.topbar{position:fixed;z-index:8;top:0;left:0;right:0;height:calc(72px + env(safe-area-inset-top));padding-top:env(safe-area-inset-top);pointer-events:none;background:linear-gradient(to bottom,rgba(255,255,255,.96),rgba(255,255,255,.88) 62%,transparent);opacity:0}.topbar-nav{height:56px;display:flex;align-items:center;justify-content:space-between;padding:0 20px}.topbar-amount{position:absolute;top:calc(env(safe-area-inset-top) + 18px);left:50%;font:500 17px/24px MTSCompact,sans-serif;white-space:nowrap;transform:translateX(-50%)}.new-product-button{position:fixed;z-index:10;left:50%;bottom:calc(var(--action-bottom-gap) + env(safe-area-inset-bottom));width:173px;height:44px;padding:0 12px;display:flex;align-items:center;justify-content:center;border:0;border-radius:16px;transform:translateX(-50%);background:#1d2023;color:#fafafa;font:700 12px/16px MTSWide,sans-serif;letter-spacing:.5px;white-space:nowrap;touch-action:manipulation;will-change:width,height}.sr{position:absolute;width:1px;height:1px;overflow:hidden;clip-path:inset(50%)}@media(prefers-reduced-motion:reduce){*,*::before,*::after{scroll-behavior:auto!important}}
+</style>
+</head>
+<body>
+<main class="scrollport" id="scrollport" aria-label="Мои накопления"><div class="screen">
+<div class="header-wrap"><header class="header"><div class="backdrop" aria-hidden="true"></div>
+<div class="hero-controls"><button class="icon-button" type="button" aria-label="Назад"><img src="header-assets/saving-back.svg" alt=""></button><button class="icon-button" type="button" aria-label="Скрыть баланс"><img src="header-assets/saving-hide.svg" alt=""></button></div>
+<div class="hero-balance" id="heroBalance"><div class="hero-title" id="heroTitle">Мои накопления</div><div class="carousel" id="carousel" role="button" tabindex="0" aria-label="Следующая сумма"><div id="amounts" aria-hidden="true"></div></div>
+<button class="income" id="incomeToggle" type="button" aria-label="Период доходности: за всё время"><span class="badge" id="badge"><span class="badge-text"></span></span><span class="income-caption" id="incomePeriod">за всё время</span><img class="sort" src="header-assets/saving-sort.svg" alt=""></button></div>
+<div class="actions" id="quickActions"><div class="action"><img src="header-assets/saving-plus.svg" alt=""><span>Пополнить</span></div><div class="action"><img src="header-assets/saving-arrow-up.svg" alt=""><span>Перевести</span></div><div class="action"><img src="header-assets/saving-analytics.svg" alt=""><span>Аналитика</span></div></div></header></div>
+      <section class="section" aria-labelledby="accounts-title">
+        <h2 class="section-title" id="accounts-title">Накопительные счета</h2>
+        <div class="product"><div class="product-icon"><img src="header-assets/saving-skins-schet.svg" alt=""></div><div class="product-copy"><div class="product-name">МТС Счёт</div><div class="product-value">467 100 ₽</div><div class="product-note">15,5% на ежедневный остаток</div></div><div class="product-income">+2 848 ₽</div></div>
+        <div class="product"><div class="product-icon"><img src="header-assets/saving-skins-schet.svg" alt=""></div><div class="product-copy"><div class="product-name">МТС Счёт</div><div class="product-value">30 000,32 ₽</div><div class="product-note">13% на минимальный остаток</div></div><div class="product-income">+2 848 ₽</div></div>
+        <div class="product"><div class="product-icon"><img src="header-assets/saving-skins-schet.svg" alt=""></div><div class="product-copy"><div class="product-name">МТС Счёт</div><div class="product-value">30 000,32 ₽</div><div class="product-note">13% на минимальный остаток</div></div><div class="product-income">+2 848 ₽</div></div>
+        <a class="offer" href="#new-product"><div class="product-icon add"><img src="header-assets/saving-add.svg" alt=""></div><div class="offer-copy"><div class="offer-title">Кешбокс</div><div class="offer-note">До 14% с ежедневной выплатой</div></div></a>
+      </section>
+
+      <section class="section" aria-labelledby="deposits-title">
+        <h2 class="section-title" id="deposits-title">Вклады</h2>
+        <div class="product"><div class="product-icon"><img src="header-assets/saving-skins-vklad.svg" alt=""></div><div class="product-copy"><div class="product-name">Вклад МТС Плюс</div><div class="product-value">0 ₽</div><div class="product-note">Пополните до 25 августа 2026</div></div></div>
+        <div class="product"><div class="product-icon"><img src="header-assets/saving-skins-vklad.svg" alt=""></div><div class="product-copy"><div class="product-name">Вклад МТС Максимум</div><div class="product-value">154 900 ₽</div><div class="product-note">18,3%, потратьте до 15.02 ещё 38 000 ₽</div></div><div class="product-income">+2 848 ₽</div></div>
+        <a class="offer" href="#new-product"><div class="product-icon add"><img src="header-assets/saving-add.svg" alt=""></div><div class="offer-copy"><div class="offer-title">Вклад «Плюс»</div><div class="offer-note">Доход с удобными условиями</div></div></a>
+      </section>
+
+      <section class="section" aria-labelledby="cfa-title">
+        <h2 class="section-title" id="cfa-title">Цифровые активы</h2>
+        <div class="product"><div class="product-icon"><img src="header-assets/saving-cfa-glorinkor.svg" alt=""></div><div class="product-copy"><div class="product-name">ЦФА Глоринкор</div><div class="product-value">30 000,32 ₽</div><div class="product-note">До 8 ноября 2024</div></div></div>
+        <div class="product"><div class="product-icon"><img src="header-assets/saving-licevoy.svg" alt=""></div><div class="product-copy"><div class="product-name">Лицевой счёт для ЦФА</div><div class="product-value">0 ₽</div><div class="product-note">Бессрочный</div></div></div>
+        <div class="product"><div class="product-icon"><img src="header-assets/saving-ghost.svg" alt=""></div><div class="product-copy"><div class="product-name">ЦФА МТС ФИНТЕХ</div><div class="product-value">30 000 ₽</div><div class="product-note">21% на 6 месяцев</div></div></div>
+      </section>
+
+      <section class="section metals" id="lastSection" aria-labelledby="metals-title">
+        <h2 class="section-title" id="metals-title">Металлы</h2>
+        <div class="product"><div class="product-icon metal"><img src="header-assets/saving-metal-gold.svg" alt=""></div><div class="product-copy"><div class="product-name">Золото</div><div class="product-value">30 г.</div><div class="product-note">1732,32 ₽ за 1 грамм</div></div></div>
+        <div class="product"><div class="product-icon metal"><img src="header-assets/saving-metal-silver.svg" alt=""></div><div class="product-copy"><div class="product-name">Серебро</div><div class="product-value">30 г.</div><div class="product-note">1732,32 ₽ за 1 грамм</div></div></div>
+        <div class="product"><div class="product-icon metal"><img src="header-assets/saving-metal-platinum.svg" alt=""></div><div class="product-copy"><div class="product-name">Платина</div><div class="product-value">30 г.</div><div class="product-note">1732,32 ₽ за 1 грамм</div></div></div>
+        <div class="product"><div class="product-icon"><img src="header-assets/saving-ghost.svg" alt=""></div><div class="product-copy"><div class="product-name">Палладий</div><div class="product-value">30 г.</div><div class="product-note">1732,32 ₽ за 1 грамм</div></div></div>
+      </section>
+      <div class="scroll-end-space" aria-hidden="true"></div></div></main>
+<header class="topbar" id="topbar" aria-label="Навигация"><div class="topbar-nav"><button class="icon-button" aria-label="Назад"><img src="header-assets/saving-back.svg" alt=""></button><button class="icon-button" aria-label="Скрыть баланс"><img src="header-assets/saving-hide.svg" alt=""></button></div><div class="topbar-amount">652 000,32 ₽</div></header>
+<button class="new-product-button" id="action">НОВЫЙ ПРОДУКТ</button><div id="announcement" class="sr" aria-live="polite"></div>
+<script>
+// Add currencies here: both animations use the same state and clock.
+const states=[{amount:'20 000 ₽',income:{all:'+1 531 ₽',month:'+246 ₽'}},{amount:'10 000 ¥',income:{all:'+1 231 ¥',month:'+100 ¥'}}];
+const FIRST_DELAY=3000, INTERVAL=6000, DURATION=560, DIGIT_DURATION=420, STAGGER=45;
+const EASING='cubic-bezier(.22,.75,.25,1)';
+const reduced=matchMedia('(prefers-reduced-motion: reduce)');
+const track=document.querySelector('#amounts'), badge=document.querySelector('#badge');
+const incomeToggle=document.querySelector('#incomeToggle'), incomePeriod=document.querySelector('#incomePeriod');
+const scrollport=document.querySelector('#scrollport'), action=document.querySelector('#action'), topbar=document.querySelector('#topbar'), heroBalance=document.querySelector('#heroBalance'), heroTitle=document.querySelector('#heroTitle'), quickActions=document.querySelector('#quickActions');
+const text=badge.firstElementChild, announcement=document.querySelector('#announcement');
+const canvas=document.createElement('canvas'), ctx=canvas.getContext('2d');
+let index=0, period='all', busy=false, ready=false, timer, widths=[];
+const periodNames={all:'за всё время',month:'за месяц'};
+const currentIncome=state=>state.income[period];
+const wrap=i=>(i%states.length+states.length)%states.length;
+function width(value,font){ctx.font=font;return ctx.measureText(value).width;}
+function build(){
+ track.replaceChildren();
+ for(let offset=-3;offset<=3;offset++){
+  const item=document.createElement('span');item.className='value';item.textContent=states[wrap(index+offset)].amount;item.dataset.offset=offset;track.append(item);
+  if(offset<3){const dot=document.createElement('img');dot.className='dot';dot.src='header-assets/b7dd0.svg';dot.alt='';dot.dataset.offset=offset;track.append(dot);}
+ }
+ applyPose(0);
+}
+function poses(center){
+ const positions={},sizes={};
+ for(let o=-3;o<=3;o++)sizes[o]=widths[wrap(index+o)]*(o===center?1:.75);
+ positions[center]=0;
+ for(let o=center+1;o<=3;o++)positions[o]=positions[o-1]+sizes[o-1]/2+32+sizes[o]/2;
+ for(let o=center-1;o>=-3;o--)positions[o]=positions[o+1]-sizes[o+1]/2-32-sizes[o]/2;
+ return [...track.children].map(el=>{
+  const o=Number(el.dataset.offset);
+  if(el.className==='dot')return {transform:`translateX(${positions[o]+sizes[o]/2+12}px)`};
+  return {transform:`translateX(calc(-50% + ${positions[o]}px)) scale(${o===center?1:.75})`,opacity:o===center?1:.3};
+ });
+}
+function applyPose(center){const p=poses(center);[...track.children].forEach((el,i)=>Object.assign(el.style,p[i]));}
+function staticBadge(){const value=currentIncome(states[index]);text.textContent=value;badge.style.width='';badge.setAttribute('aria-label',value);incomePeriod.textContent=periodNames[period];incomeToggle.setAttribute('aria-label',`Период доходности: ${periodNames[period]}`);}
+function rollBadge(previousValue,next){
+ const oldDigits=[...previousValue].filter(char=>/\d/.test(char));
+ const newDigits=[...next].filter(char=>/\d/.test(char));
+ const oldOffset=oldDigits.length-newDigits.length;
+ const jobs=[];let digitIndex=0;
+ const startWidth=badge.getBoundingClientRect().width;
+ text.replaceChildren();
+ [...next].forEach(char=>{
+  if(!/\d/.test(char)){text.append(document.createTextNode(char));return;}
+  const currentDigitIndex=digitIndex++;
+  const oldIndex=currentDigitIndex+oldOffset;
+  const oldDigit=oldDigits[oldIndex];
+  const slot=document.createElement('span');slot.className='glyph';slot.style.width=`${width(char,'500 14px MTSCompact')}px`;
+  const incoming=document.createElement('span');incoming.textContent=char;slot.append(incoming);
+  if(char!==oldDigit){
+   if(oldDigit!==undefined){const outgoing=document.createElement('span');outgoing.textContent=oldDigit;slot.append(outgoing);}
+   const options={duration:DIGIT_DURATION,delay:currentDigitIndex*STAGGER,easing:EASING,fill:'both'};
+   jobs.push(incoming.animate([{transform:'translateY(-100%)'},{transform:'translateY(0)'}],options).finished);
+   if(oldDigit!==undefined){const outgoing=slot.lastElementChild;jobs.push(outgoing.animate([{transform:'translateY(0)'},{transform:'translateY(100%)'}],options).finished);}
+  }
+  text.append(slot);
+ });
+ const targetWidth=text.getBoundingClientRect().width+12;
+ jobs.push(badge.animate([{width:`${startWidth}px`},{width:`${targetWidth}px`}],{duration:DURATION,easing:EASING}).finished);
+ return Promise.all(jobs);
+}
+async function advance(){
+ if(!ready||busy||states.length<2)return;busy=true;
+ const next=wrap(index+1);
+ const previousIncome=currentIncome(states[index]),nextIncome=currentIncome(states[next]);
+ if(!reduced.matches){
+  const from=poses(0),to=poses(1);
+  await Promise.all([...track.children].map((el,i)=>el.animate([from[i],to[i]],{duration:DURATION,easing:EASING,fill:'forwards'}).finished).concat(rollBadge(previousIncome,nextIncome)));
+ }
+ index=next;build();staticBadge();announcement.textContent=states[index].amount+'; доход '+currentIncome(states[index]);busy=false;incomeToggle.disabled=false;
+}
+function schedule(delay){clearTimeout(timer);timer=setTimeout(()=>{advance();schedule(INTERVAL);},delay);}
+async function toggleIncomePeriod(){if(!ready||busy)return;busy=true;incomeToggle.disabled=true;const previous=currentIncome(states[index]);period=period==='all'?'month':'all';const next=currentIncome(states[index]);incomePeriod.textContent=periodNames[period];incomeToggle.setAttribute('aria-label',`Период доходности: ${periodNames[period]}`);if(reduced.matches){staticBadge();busy=false;incomeToggle.disabled=false;return;}await rollBadge(previous,next);badge.setAttribute('aria-label',next);busy=false;incomeToggle.disabled=false;}
+incomeToggle.addEventListener('click',toggleIncomePeriod);
+function manual(){if(!ready||busy)return;advance();schedule(INTERVAL);}
+document.querySelector('#carousel').onclick=manual;
+document.querySelector('#carousel').onkeydown=e=>{if(e.key==='Enter'||e.key===' '){e.preventDefault();manual();}};
+
+document.fonts.ready.then(()=>{widths=states.map(s=>width(s.amount,'500 32px MTSWide'));build();staticBadge();ready=true;schedule(FIRST_DELAY);});
+const expansionDistance=90;let hapticPlayed=false,raf=0,previousTouchY=0;
+function clamp01(v){return Math.max(0,Math.min(1,v));}function smooth(v){const p=clamp01(v);return p*p*p*(p*(p*6-15)+10);}
+function updateFromScroll(fromScroll=false){if(raf)return;raf=requestAnimationFrame(()=>{raf=0;const max=Math.max(0,scrollport.scrollHeight-scrollport.clientHeight),remaining=Math.max(0,max-scrollport.scrollTop);const p=smooth(1-remaining/expansionDistance);const full=Math.max(173,scrollport.clientWidth-32);action.style.width=`${173+(full-173)*p}px`;action.style.height=`${44+8*p}px`;action.style.borderRadius=`${16+10*p}px`;const hp=smooth(scrollport.scrollTop/180),np=smooth((scrollport.scrollTop-110)/120);heroBalance.style.opacity=1-hp;heroBalance.style.transform=`translateY(${-56*hp}px) scale(${1-.12*hp})`;heroTitle.style.opacity=1-hp;quickActions.style.opacity=1-hp;quickActions.style.transform=`translateY(${-42*hp}px) scale(${1-.08*hp})`;topbar.style.opacity=np;const atEnd=max>0&&remaining<=1;if(atEnd&&fromScroll&&!hapticPlayed){if(navigator.vibrate)navigator.vibrate(18);hapticPlayed=true;}else if(!atEnd)hapticPlayed=false;});}
+scrollport.addEventListener('scroll',()=>updateFromScroll(true),{passive:true});window.addEventListener('resize',()=>updateFromScroll());scrollport.addEventListener('touchstart',e=>{previousTouchY=e.touches[0].clientY;},{passive:true});scrollport.addEventListener('touchmove',e=>{const y=e.touches[0].clientY,max=scrollport.scrollHeight-scrollport.clientHeight;const pastTop=scrollport.scrollTop<=0&&y>previousTouchY,pastBottom=scrollport.scrollTop>=max-1&&y<previousTouchY;if(pastTop||pastBottom)e.preventDefault();previousTouchY=y;},{passive:false});updateFromScroll();
+</script>
+</body>
+</html>
